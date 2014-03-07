@@ -1,0 +1,16 @@
+[scielo_identifier]
+url: http://200.136.72.162
+port: 7000
+endpoint: /api/v1/article/identifiers
+
+[scielo_article]
+url: http://200.136.72.162
+port: 7000
+endpoint: /api/v1/article
+
+[ratchet]
+url: http://200.136.72.52
+port: 8861
+endpoint: /api/v1/general
+earliest_load: 2013-09-01
+
