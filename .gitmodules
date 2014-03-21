@@ -1,0 +1,3 @@
+[submodule "xylose"]
+	path = xylose
+	url = git@github.com:scieloorg/xylose.git
