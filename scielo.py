@@ -176,8 +176,12 @@ with pd.get_store(fname) as store:
     for l in f:
         id = l.split(',')[0]
         downloads = fetch_downloads(id)
-        if downloads:
-            store.append('s', make_series(id, downloads))
+        try: 
+            if downloads:
+                store.append('s', make_series(id, downloads), min_itemsize = 50)
+        except: 
+            print 'Problems with', id
+            
         offset += 1
         if (offset % 10) == 0:
             print offset, id
