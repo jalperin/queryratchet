@@ -165,7 +165,10 @@ f = open(ids_fname, 'rb')
 
 fname = Config.get('files', 'h5file')
 
-os.remove(fname) # clear the file before starting (this will probably get me in trouble later)
+try:
+    os.remove(fname) # clear the file before starting (this will probably get me in trouble later)
+except:
+    pass
 
 # create the store and append, using data_columns where I possibily
 # could aggregate
