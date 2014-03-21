@@ -1,3 +1,7 @@
+[files]
+idsfile: data/idsinratchet_march7.txt
+h5file: data/store.h5
+
 [scielo_identifier]
 url: http://200.136.72.162
 port: 7000
@@ -13,4 +17,6 @@ url: http://200.136.72.52
 port: 8861
 endpoint: /api/v1/general
 earliest_load: 2013-09-01
+
+
 
