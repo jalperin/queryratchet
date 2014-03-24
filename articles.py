@@ -78,5 +78,5 @@ def loop_ids():
 
 ids = fetch_scielo_identifiers()
 f = open(Config.get('files', 'datadir') + 'scielo_ids.cPickle', 'wb')
-pickle.dump(ids, f)
+cPickle.dump(ids, f)
 f.close()
