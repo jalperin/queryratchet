@@ -130,8 +130,9 @@ with pd.get_store(fname) as store:
         try:
             if downloads:
                 store.append('s', make_series(id, downloads), min_itemsize = 50)
-        except:
+        except Exception as e:
             print 'Problems with', id
+            print e.args
 
         offset += 1
         if (offset % 10) == 0:
