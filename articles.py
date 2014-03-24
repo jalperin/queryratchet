@@ -77,6 +77,6 @@ def loop_ids():
         print i, strftime('%Y-%m-%d', pub_date)
 
 ids = fetch_scielo_identifiers()
-f = open(Config.get('files', 'datadir') + 'scielo_ids.cPickle')
+f = open(Config.get('files', 'datadir') + 'scielo_ids.cPickle', 'wb')
 pickle.dump(ids, f)
 f.close()
