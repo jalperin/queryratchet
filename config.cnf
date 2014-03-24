@@ -1,4 +1,5 @@
 [files]
+datadir: data/
 idsfile: data/idsinratchet_march7.txt
 h5file: data/store.h5
 
