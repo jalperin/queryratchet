@@ -45,7 +45,7 @@ def fetch_scielo_identifiers():
         offset = content['meta']['offset'] + len(content['objects'])
 
         # quit when we've reached the end
-        if offset > content['meta']['total']:
+        if offset == content['meta']['total']:
             break
 
     return all_ids
