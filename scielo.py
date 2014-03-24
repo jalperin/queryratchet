@@ -30,9 +30,12 @@ def fetch_downloads(id):
     data = {'code': id}
     url = base_url + port + endpoint + '?' + urllib.urlencode(data)
     print 'fetching: ', id, '...',
-    response = json.load(ratelimited.urlopen(url))
-    print 'done'
-    if not response:
+    try:
+        response = json.load(ratelimited.urlopen(url))
+        print 'OK'
+    except Exception as e:
+        print 'failed'
+        print e.args
         return None
 
     # confirms these are all articles
@@ -127,16 +130,17 @@ with pd.get_store(fname) as store:
     for l in f:
         id = l.split(',')[0]
         downloads = fetch_downloads(id)
-        try:
-            if downloads:
-                store.append('s', make_series(id, downloads), min_itemsize = 50)
-        except Exception as e:
-            print 'Problems with', id
-            print e.args
+        if downloads:
+            store.append('s', make_series(id, downloads), min_itemsize = 50)
+        else:
+            # this may be slow, but its a better way to make sure
+            failure_file = open(Config.get('ratchet', 'failure_file'), 'a')
+            failure_file.write(id + "\n")
+            failure_file.close()
 
         offset += 1
-        if (offset % 10) == 0:
-            print offset, id
+        print offset, id
+
 
 f.close()
 

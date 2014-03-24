@@ -15,9 +15,10 @@ endpoint: /api/v1/article
 
 [ratchet]
 url: http://200.136.72.52
-port: 8861
+port: 8861999
 endpoint: /api/v1/general
 earliest_load: 2013-09-01
+failure_file: data/ratchet_failed.txt
 
 
 
