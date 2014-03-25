@@ -82,10 +82,14 @@ def fetch_scielo_article(id, from_file = True):
         endpoint = Config.get('scielo_article', 'endpoint')
         data = {'code': id}
         url = base_url + port + endpoint + '?' + urllib.urlencode(data)
-        content = json.load(ratelimited.urlopen(url))
-        article = Article(content)
-        shelf[id] = article
-        print "from API"
+        try:
+            content = json.load(ratelimited.urlopen(url))
+            article = Article(content)
+            shelf[id] = article
+            print "from API"
+        except Exception:
+            print "failed"
+
     shelf.close()
 
     return article
@@ -112,3 +116,6 @@ ids2013 = filter(lambda x:x[10:14] == '2013', ids)
 for id in ids2013:
     fetch_scielo_article(id)
 
+unpacked = []
+for id,article in shelf.iteritems():
+    unpacked.append((id, article.doi, article.publication_date, article.any_issn, article.journal_title, article.journal_url, article.original_language, article.subject_areas, article.wos_subject_areas))
